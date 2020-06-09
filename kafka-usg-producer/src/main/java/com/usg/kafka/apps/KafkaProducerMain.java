@@ -69,7 +69,11 @@ public class KafkaProducerMain {
             String msg = "we send message to kafka server:" + key;
             kafkaProdcer.send(new ProducerRecord<String, String>(ConstantUtils.TOPIC, key, msg), new Callback() {
                 public void onCompletion(RecordMetadata recordMetadata, Exception e) {
-                    System.out.println("发送消息" + key + "成功");
+                    if (e == null) {
+                        System.out.println("发送消息" + key + "成功");
+                    } else {
+                        System.out.println("发送消息" + key + "失败");
+                    }
                 }
             });
         }
