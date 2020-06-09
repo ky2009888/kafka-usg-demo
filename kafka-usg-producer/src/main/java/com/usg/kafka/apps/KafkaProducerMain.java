@@ -43,14 +43,14 @@ public class KafkaProducerMain {
      */
     private Producer<String, String> createKafkaProducer() {
         Properties parmas = new Properties();
-        parmas.put(ConstantUtils.BOOTSTRAP_SERVERS, ConstantUtils.SERVER_IP);
-        parmas.put("acks", "all");
-        parmas.put("retries", 1);
-        parmas.put("batch.size", 16384);
-        parmas.put("linger.ms", 1);
-        parmas.put("buffer.memory", 33554432);
-        parmas.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-        parmas.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+        parmas.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, ConstantUtils.SERVER_IP);
+        parmas.put(ProducerConfig.ACKS_CONFIG, "all");
+        parmas.put(ProducerConfig.RETRIES_CONFIG, 1);
+        parmas.put(ProducerConfig.BATCH_SIZE_CONFIG, 16384);
+        parmas.put(ProducerConfig.LINGER_MS_CONFIG, 1);
+        parmas.put(ProducerConfig.BUFFER_MEMORY_CONFIG, 33554432);
+        parmas.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
+        parmas.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
         Producer<String, String> producer = new KafkaProducer<String, String>(parmas);
         return producer;
     }
