@@ -1,5 +1,6 @@
 package com.usg.kafka.apps;
 
+import com.usg.kafka.common.apps.ConstantUtils;
 import org.apache.kafka.clients.producer.*;
 
 import java.util.Properties;
@@ -27,10 +28,6 @@ public class KafkaProducerMain {
      * 定义消息生产者
      */
     private final Producer<String, String> kafkaProdcer;
-    /**
-     * 定义主题
-     */
-    public final static String TOPIC = "orderinfo";
 
     /**
      * 定义构造方法
@@ -46,9 +43,9 @@ public class KafkaProducerMain {
      */
     private Producer<String, String> createKafkaProducer() {
         Properties parmas = new Properties();
-        parmas.put("bootstrap.servers", "192.168.64.6:9092");
+        parmas.put(ConstantUtils.BOOTSTRAP_SERVERS, ConstantUtils.SERVER_IP);
         parmas.put("acks", "all");
-        parmas.put("retries", 0);
+        parmas.put("retries", 1);
         parmas.put("batch.size", 16384);
         parmas.put("linger.ms", 1);
         parmas.put("buffer.memory", 33554432);
@@ -67,7 +64,7 @@ public class KafkaProducerMain {
             }
             final String key = "key" + i;
             String msg = "we send message to kafka server:" + key;
-            kafkaProdcer.send(new ProducerRecord<String, String>(TOPIC, key, msg), new Callback() {
+            kafkaProdcer.send(new ProducerRecord<String, String>(ConstantUtils.TOPIC, key, msg), new Callback() {
                 public void onCompletion(RecordMetadata recordMetadata, Exception e) {
                     System.out.println("发送消息" + key + "成功");
                 }
