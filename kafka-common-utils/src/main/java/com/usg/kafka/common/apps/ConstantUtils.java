@@ -42,8 +42,14 @@ public class ConstantUtils {
      */
     public static String AUTO_OFFSET_RESET = "auto.offset.reset";
 
+    /**
+     * The constant KEY_DESERIALIZER.
+     */
     public static String KEY_DESERIALIZER = "key.deserializer";
 
+    /**
+     * The constant VALUE_DESERIALIZER.
+     */
     public static String VALUE_DESERIALIZER = "value.deserializer";
     /**
      * 定义主题

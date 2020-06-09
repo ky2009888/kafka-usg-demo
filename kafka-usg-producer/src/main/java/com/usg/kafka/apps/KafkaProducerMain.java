@@ -55,6 +55,9 @@ public class KafkaProducerMain {
         return producer;
     }
 
+    /**
+     * Produce.
+     */
     void produce() {
         for (int i = 0; i < 5; i++) {
             try {
