@@ -51,6 +51,7 @@ public class KafkaConsumerMain {
         //¶©ÔÄÖ÷Ìâ
         consumer.subscribe(Arrays.asList(ConstantUtils.TOPIC));
         while (true) {
+            //The time, in milliseconds, spent waiting in poll if data is not available in the buffer
             ConsumerRecords<String, String> records = consumer.poll(1000);
             for (ConsumerRecord<String, String> consumerRecords : records) {
                 System.out.println("key:" + consumerRecords.key() + ", value: " + consumerRecords.value() + ", topic: " + consumerRecords.topic());
