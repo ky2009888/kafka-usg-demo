@@ -27,12 +27,19 @@ public class KafkaConsumerMain {
      */
     public KafkaConsumerMain() {
         Properties properties = new Properties();
+        //指定服务器的地址
         properties.put(ConstantUtils.BOOTSTRAP_SERVERS, ConstantUtils.SERVER_IP);
+        //开启自动提交
         properties.put(ConstantUtils.ENABLE_AUTO_COMMIT, "true");
+        //自动提交的延时
         properties.put(ConstantUtils.AUTO_COMMIT_INTERVAL_MS, 1000);
+        //指定组的ID
         properties.put(ConstantUtils.GROUP_ID, "test-consumer-group");
+        //指定session的时效时间
         properties.put(ConstantUtils.SESSION_TIMEOUT_MS, 30000);
+        //指定key的反序列化的类
         properties.put(ConstantUtils.KEY_DESERIALIZER, "org.apache.kafka.common.serialization.StringDeserializer");
+        //指定value的反序列化的类
         properties.put(ConstantUtils.VALUE_DESERIALIZER, "org.apache.kafka.common.serialization.StringDeserializer");
         consumer = new KafkaConsumer<>(properties);
     }
@@ -41,6 +48,7 @@ public class KafkaConsumerMain {
      * 消费消息
      */
     void getConsumers() {
+        //订阅主题
         consumer.subscribe(Arrays.asList(ConstantUtils.TOPIC));
         while (true) {
             ConsumerRecords<String, String> records = consumer.poll(1000);
